@@ -53,6 +53,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/giansalex/echo-rest"
+  packages = ["model"]
+  revision = "31f4d33f7468b0dd05d92c6e032b02d0683356da"
+
+[[projects]]
+  branch = "master"
   name = "github.com/hashicorp/go-version"
   packages = ["."]
   revision = "23480c0665776210b5fbbac6eaaee40e3e6a96b7"
@@ -65,7 +71,10 @@
 
 [[projects]]
   name = "github.com/iris-contrib/middleware"
-  packages = ["jwt"]
+  packages = [
+    "cors",
+    "jwt"
+  ]
   revision = "1060fbb0ce08a72c50c612e8e5bdc8076c28343d"
   version = "v10"
 
@@ -193,6 +202,12 @@
   version = "1.0.0"
 
 [[projects]]
+  name = "github.com/rs/cors"
+  packages = ["."]
+  revision = "feef513b9575b32f84bafa580aad89b011259019"
+  version = "v1.3.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/ryanuber/columnize"
   packages = ["."]
@@ -258,6 +273,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "654d823bb96bf4d69d8e2c270ddad252ea18306d219f1423c0547056e8808a9f"
+  inputs-digest = "155d468976d755d80947b4df2cafa610f9032c5c870db98b1e418cce0ae04210"
   solver-name = "gps-cdcl"
   solver-version = 1

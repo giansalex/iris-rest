@@ -4,8 +4,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/giansalex/echo-rest/model"
+	"github.com/iris-contrib/middleware/cors"
 	jwtmiddleware "github.com/iris-contrib/middleware/jwt"
 	"github.com/kataras/iris"
 )
@@ -20,14 +21,24 @@ func main() {
 		SigningMethod: jwt.SigningMethodHS256,
 	})
 
+	corsHandler := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"}, // allows everything, use that to change the hosts.
+		AllowedHeaders:   []string{"*"},
+		AllowCredentials: true,
+	})
+
 	app.Get("/", index)
 	app.Get("/hello/{name:string}", hello)
-	app.Post("/api/login", login)
 
-	v1 := app.Party("/api/v1")
+	api := app.Party("/api", corsHandler).AllowMethods(iris.MethodOptions)
 	{
-		v1.Use(jwtHandler.Serve)
-		v1.Get("/users", users)
+		api.Post("/login", login)
+
+		v1 := api.Party("/v1")
+		{
+			v1.Use(jwtHandler.Serve)
+			v1.Get("/users", users)
+		}
 	}
 
 	// Start the server using a network address.
