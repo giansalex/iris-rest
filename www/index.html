@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Iris APP</title>
+</head>
+<body>
+    <div>
+        <button id="btnLogin">Login</button>
+        <button id="btnUsers" disabled>Get Users</button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var login = function () {
+                var user = {
+                    username: 'admin',
+                    password: '123456'
+                };
+                $.ajax({
+                    url: 'http://localhost:8080/api/login',
+                    data: JSON.stringify(user),
+                    method: 'POST',
+                    dataType: 'json',
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    },
+                }).done(function (data) {
+                    $('#btnUsers').removeAttr('disabled');
+                    console.log(data);
+                    $.ajaxSetup({
+                    headers : {
+                        'Authorization' : 'Bearer ' + data.token,
+                    }
+});
+                });
+            }
+
+            var users = function () {
+                $.getJSON('http://localhost:8080/api/v1/users', function (data) {
+                    console.log(data);
+                })
+            }
+
+            $('#btnLogin').click(login);
+            $('#btnUsers').click(users);
+        });
+    </script>
+</body>
+</html>
