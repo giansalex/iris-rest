@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"time"
 
+	"os"
+
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/giansalex/echo-rest/model"
 	"github.com/iris-contrib/middleware/cors"
@@ -12,6 +14,13 @@ import (
 )
 
 func main() {
+
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "8080"
+	}
+
 	app := iris.New()
 
 	jwtHandler := jwtmiddleware.New(jwtmiddleware.Config{
@@ -42,7 +51,7 @@ func main() {
 	}
 
 	// Start the server using a network address.
-	app.Run(iris.Addr(":8080"))
+	app.Run(iris.Addr(":" + port))
 }
 
 // Handler
