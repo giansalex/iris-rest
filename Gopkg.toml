@@ -36,3 +36,6 @@
 [[constraint]]
   name = "github.com/iris-contrib/middleware"
   version = "10.0.0"
+
+[metadata.heroku]
+  root-package = "github.com/giansalex/iris-rest"
