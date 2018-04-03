@@ -30,6 +30,10 @@
   unused-packages = true
 
 [[constraint]]
+  name = "github.com/kataras/iris"
+  version = "10.5.0"
+
+[[constraint]]
   name = "github.com/dgrijalva/jwt-go"
   version = "3.2.0"
 

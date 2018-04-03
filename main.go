@@ -13,14 +13,7 @@ import (
 	"github.com/kataras/iris"
 )
 
-func main() {
-
-	port := os.Getenv("PORT")
-
-	if port == "" {
-		port = "8080"
-	}
-
+func newApp() *iris.Application {
 	app := iris.New()
 
 	jwtHandler := jwtmiddleware.New(jwtmiddleware.Config{
@@ -50,7 +43,18 @@ func main() {
 		}
 	}
 
-	// Start the server using a network address.
+	return app
+}
+
+func main() {
+
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "8080"
+	}
+
+	app := newApp()
 	app.Run(iris.Addr(":" + port))
 }
 
