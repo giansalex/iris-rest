@@ -1,6 +1,6 @@
 # Iris Rest Api (Sample)
 [![Build Status](https://travis-ci.org/giansalex/iris-rest.svg?branch=master)](https://travis-ci.org/giansalex/iris-rest)     
-using [Iris](https://github.com/kataras/iris) with Docker
+Using [Iris](https://github.com/kataras/iris) with [dep](https://golang.github.io/dep/) deploy on Docker.
 
 ## Docker
 
@@ -16,3 +16,10 @@ docker build -t goiris .
 ```bash
 docker run -d -p 80:8080 --name restapp goiris
 ```
+
+### Deploy on AWS Elastic Beanstalk
+
+In type application choose docker.
+
+Example:
+http://iris-rest.us-east-1.elasticbeanstalk.com/hello/giansalex
