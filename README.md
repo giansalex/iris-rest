@@ -20,6 +20,3 @@ docker run -d -p 80:8080 --name restapp goiris
 ### Deploy on AWS Elastic Beanstalk
 
 In type application choose docker.
-
-Example:
-http://iris-rest.us-east-1.elasticbeanstalk.com/hello/giansalex
