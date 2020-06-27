@@ -11,7 +11,7 @@ COPY . .
 RUN dep ensure
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags "-s -w" -a -installsuffix cgo -o /root/app
 
-FROM alpine:latest
+FROM scratch
 LABEL owner="Giancarlos Salas"
 LABEL maintainer="giansalex@gmail.com"
 EXPOSE 8080
