@@ -29,18 +29,20 @@
                         'Content-Type': 'application/json; charset=UTF-8'
                     },
                 }).done(function (data) {
-                    $('#btnUsers').removeAttr('disabled');
                     console.log(data);
                     $.ajaxSetup({
-                    headers : {
-                        'Authorization' : 'Bearer ' + data.token,
-                    }
-});
+                        headers : {
+                            'Authorization' : 'Bearer ' + data.token,
+                        }
+                    });
+                    $('#btnUsers').removeAttr('disabled');
+                    alert('Success login.');
                 });
             }
 
             var users = function () {
                 $.getJSON(domain + '/api/v1/users', function (data) {
+                    alert(JSON.stringify(data));
                     console.log(data);
                 })
             }
