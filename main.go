@@ -2,15 +2,17 @@ package main
 
 import (
 	"net/http"
+	"os"
 	"time"
 
-	"os"
+	"github.com/giansalex/iris-rest/model"
+	"github.com/kataras/iris/v12"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/giansalex/echo-rest/model"
 	"github.com/iris-contrib/middleware/cors"
 	jwtmiddleware "github.com/iris-contrib/middleware/jwt"
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12/middleware/logger"
+	"github.com/kataras/iris/v12/middleware/recover"
 )
 
 func newApp() *iris.Application {
@@ -28,6 +30,13 @@ func newApp() *iris.Application {
 		AllowedHeaders:   []string{"*"},
 		AllowCredentials: true,
 	})
+
+	app.Logger().SetLevel("debug")
+	// Optionally, add two built'n handlers
+	// that can recover from any http-relative panics
+	// and log the requests to the terminal.
+	app.Use(recover.New())
+	app.Use(logger.New())
 
 	app.Get("/", index)
 	app.Get("/hello/{name:string}", hello)
@@ -47,7 +56,6 @@ func newApp() *iris.Application {
 }
 
 func main() {
-
 	port := os.Getenv("PORT")
 
 	if port == "" {
@@ -55,7 +63,7 @@ func main() {
 	}
 
 	app := newApp()
-	app.Run(iris.Addr(":" + port))
+	app.Run(iris.Addr(":"+port), iris.WithoutServerError(iris.ErrServerClosed))
 }
 
 // Handler
@@ -72,11 +80,11 @@ func hello(c iris.Context) {
 
 func users(c iris.Context) {
 	list := []*model.User{
-		&model.User{
+		{
 			Name:  "Jon",
 			Email: "jon@labstack.com",
 		},
-		&model.User{
+		{
 			Name:  "GianCarlos",
 			Email: "giansalex@gmail.com",
 		},
