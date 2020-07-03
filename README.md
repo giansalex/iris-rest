@@ -2,6 +2,16 @@
 [![Build Status](https://travis-ci.org/giansalex/iris-rest.svg?branch=master)](https://travis-ci.org/giansalex/iris-rest)     
 Using [Iris](https://github.com/kataras/iris) with [dep](https://golang.github.io/dep/) deploy on Docker.
 
+Run application. 
+```bash
+go run ./
+```
+
+Run tests.
+```bash
+go test ./
+```
+
 ## Docker
 
 Deploy iris application on Docker.
