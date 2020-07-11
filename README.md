@@ -1,6 +1,6 @@
 # Iris Rest Api (Sample)
 [![Build Status](https://travis-ci.org/giansalex/iris-rest.svg?branch=master)](https://travis-ci.org/giansalex/iris-rest)     
-Using [Iris](https://github.com/kataras/iris) with [dep](https://golang.github.io/dep/) deploy on Docker.
+Using [Iris](https://github.com/kataras/iris) deploy on Heroku.
 
 Run application. 
 ```bash
